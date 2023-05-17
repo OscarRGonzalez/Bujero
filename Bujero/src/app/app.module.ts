@@ -12,6 +12,7 @@ import { InfoPlantaComponent } from './components/info-planta/info-planta.compon
 import { LoginComponent } from './components/login/login.component';
 import { MisCultivosComponent } from './components/mis-cultivos/mis-cultivos.component';
 import { RegistroComponent } from './components/registro/registro.component';
+import { routing } from "./app-routing";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { RegistroComponent } from './components/registro/registro.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    routing
   ],
   providers: [],
   bootstrap: [AppComponent]
