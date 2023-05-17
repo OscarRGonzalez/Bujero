@@ -1,57 +1,27 @@
-<nav class="fixed-top">
-    <div class="row mb-3">
-        <div class="col-3  mx-auto">
-            <a class="nav-link" href="#">
-                <span><i class="fas fa-user fa-lg"></i></span>
-            </a>
-        </div>
-        <div class="col-3 mx-auto">
-            <a class="nav-link" href="#">
-                <span><i class="fas fa-cog fa-lg"></i></span>
-            </a>
-        </div>
-        <div class="col-3">
-            <a class="nav-link" href="#">
-                <span><i class="fas fa-home fa-lg"></i></span>
-            </a>
-        </div>
-        <div class="col-3">
-            <a class="nav-link" href="#">
-                <span><i class="fas fa-house-tree fa-lg"></i></span>
-            </a>
-        </div>
+
+
+<!-- Top Navbar-->
+  <nav class="top-nav-bar fixed-top">
+    <div class="d-flex justify-content-between col-sm-12 ">
+      <a href="#home" class="col-lg-3"><i class="fa fa-fw fa-chevron-left fa-2x" style="color: #3e6723;"></i></a>
+      <h1>HOME</h1>
+      <a href="#mycrops" class="col-lg-3"><i class="fa fa-fw fa-user fa-2x" style="color: #3e6723;"></i></a>
     </div>
-</nav>
+  </nav>
+
+  <!-- Center elements -->
+
+  <router-outlet></router-outlet>
 
 
-<router-outlet></router-outlet>
-<!-- Center elements -->
 
-<body>
-    <!-- Navbar-->
-    <nav class="fixed-bottom">
-        <div class="row mb-3">
-            <div class="col-3  mx-auto">
-                <a class="nav-link" href="#">
-                    <span><i class="fas fa-user fa-lg"></i></span>
-                </a>
-            </div>
-            <div class="col-3 mx-auto">
-                <a class="nav-link" href="#">
-                    <span><i class="fas fa-cog fa-lg"></i></span>
-                </a>
-            </div>
-            <div class="col-3">
-                <a class="nav-link" href="#">
-                    <span><i class="fas fa-home fa-lg"></i></span>
-                </a>
-            </div>
-            <div class="col-3">
-                <a class="nav-link" href="#">
-                    <span><i class="fas fa-house-tree fa-lg"></i></span>
-                </a>
-            </div>
-        </div>
-        
+    <!-- Bottom Navbar-->
+    <nav class="btm-nav-bar fixed-bottom">
+      <div class="d-flex justify-content-around col-sm-12 ">
+        <a href="#home" class="col-lg-3"><i class="fa fa-fw fa-home fa-2x" style="color: #3e6723;"></i></a>
+        <a href="#search" class="col-lg-3"><i class="fa fa-fw fa-search fa-2x" style="color: #3e6723;"></i></a>
+        <a href="#fav" class="col-lg-3"><i class="fa fa-fw fa-star fa-2x" style="color: #3e6723;"></i></a>
+        <a href="#mycrops" class="col-lg-3"><i class="fa fa-fw fa-seedling fa-2x" style="color: #3e6723;"></i></a>
+      </div>
     </nav>
-</body>
+

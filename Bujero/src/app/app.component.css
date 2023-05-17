@@ -1,3 +1,17 @@
-.bottom_navigation{
-    
+.top-nav-bar{
+  margin-bottom: 10px;
+  padding: 14px 8px 10px 8px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background-color: #36FF6E;
+  color: #3E6723;
+
 }
+
+.btm-nav-bar{
+  margin-bottom: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(62, 103, 35, 0.5);
+}
+
+
