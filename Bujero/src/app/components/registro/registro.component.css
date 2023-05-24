@@ -1,0 +1,87 @@
+
+.div-logo img{
+  width: 100%;
+  height: 100%;
+}
+
+.div-logo{
+
+  width: 200px;
+}
+
+.register-form-div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+}
+.register-form-div > * {
+  margin: 1em 0;
+}
+
+
+
+.div-btn-register{
+  margin-top: 20px;
+}
+
+.div-a-login{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  font-weight: bold;
+}
+.div-a-login > * {
+  margin: 0.2em 0;
+}
+
+
+button{
+  font-weight: bold;
+  background-color: rgba(107, 212, 168, 0.65);
+  border: 1px #6BD4A8 solid;
+  color: black;
+  padding: 7px 30px;
+}
+
+input{
+  background-color: rgba(107, 212, 168, 0.5);
+  border: 1px #6BD4A8 solid;
+
+}
+
+.input-form{
+  width: 250px;
+  height: 50px;
+  font-size: 0.9em;
+}
+
+.input-label{
+  font-size: 0.9em;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.5);
+}
+.errspan {
+  float: right;
+  margin-right: 15px;
+  margin-top: -35px;
+  position: relative;
+  z-index: 2;
+  color: #6BD4A8;
+}
+
+.btn-a-login{
+  background-color: rgb(107, 212, 168);
+  border: 1px #6BD4A8 solid;
+  color: black;
+}
+
+#repeatPass{
+  margin-top: 15px;
+}
+
+
