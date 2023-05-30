@@ -1,0 +1,28 @@
+[
+  {
+    "fecha": "2019-01-01",
+    "nombre": "Margarita",
+    "maniana": true,
+    "tarde": false,
+    "img": "assets/img/margaritas.png",
+    "nota": "la planta está en buen estado"
+  },
+  {
+    "fecha": "2019-01-01",
+    "nombre": "Coleo",
+    "maniana": false,
+    "tarde": true,
+    "img": "assets/img/Coleo.png",
+    "nota": "la planta está en MAL estado"
+  },
+  {
+    "fecha": "2021-10-27",
+    "nombre": "primulas",
+    "maniana": false,
+    "tarde": true,
+    "img": "assets/img/primulas.jpg",
+    "nota": "la planta"
+  }
+]
+
+

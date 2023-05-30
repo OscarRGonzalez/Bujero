@@ -13,6 +13,7 @@ import { LoginComponent } from './components/login/login.component';
 import { MisCultivosComponent } from './components/mis-cultivos/mis-cultivos.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { routing } from "./app-routing";
+import { CardMisCultivosComponent } from './components/card-mis-cultivos/card-mis-cultivos.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { routing } from "./app-routing";
     InfoPlantaComponent,
     LoginComponent,
     MisCultivosComponent,
-    RegistroComponent
+    RegistroComponent,
+    CardMisCultivosComponent
   ],
   imports: [
     BrowserModule,

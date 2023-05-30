@@ -1,1 +1,12 @@
-<p>mis-cultivos works!</p>
+<div class="contenedor vh-100">
+    <app-card-mis-cultivos *ngFor="let item of cards; let i = index"
+                           [nombre]="item.nombre"
+                           [imagen_planta]="item.img"
+                           [fecha_agregada]="item.fecha"
+                           [nota]="item.nota"
+                           [maniana_check]="item.maniana"
+                           [tarde_check]="item.tarde"
+    >
+    </app-card-mis-cultivos>
+
+</div>
