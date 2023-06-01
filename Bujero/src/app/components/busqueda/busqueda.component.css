@@ -1,0 +1,44 @@
+
+.div-busqueda{
+  margin-top: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.div-logo{
+  width: 195px;
+  margin-bottom: 1vh;
+}
+.div-logo img{
+  width: 100%;
+  height: 100%;
+  margin-bottom: 5vh;
+}
+
+.div-buscar{
+  width: 75vw;
+  height: 5vh;
+}
+
+
+
+input{
+  background-color: rgba(107, 212, 168, 0.5);
+  border: 1px #6BD4A8 solid;
+  border-radius: 20px;
+  width: 100%;
+  height: 100%;
+
+}
+.errspan {
+  float: right;
+  margin-right: 15px;
+  margin-top: -27px;
+  position: relative;
+  z-index: 2;
+  color: #6BD4A8;
+}
+
+
+
