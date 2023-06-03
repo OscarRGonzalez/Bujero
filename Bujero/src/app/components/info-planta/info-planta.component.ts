@@ -12,8 +12,9 @@ export class InfoPlantaComponent {
   estaciones = ['Primavera', 'Verano', 'Otoño', 'Invierno'];
   dondeSembrar = 'se puede sembrar en cualquier lugar en el que le de el sol'; 
   cuidados = ['regarla cada 2 dias', 'cortarla cada 2 meses', 'abonarla cada 3 meses'];
-  crecimientos = ['crece 1 cm por mes', 'crece 2 cm por mes', 'crece 3 cm por mes'];
+  crecimientos = ['/assets/img/margarita-crecimiento.webp'];
   imagenes = ["/assets/img/Coleo.png","/assets/img/margarita-partes.jpg","/assets/img/margarita.jpg"]
+  
 
   seedClicked() {
     alert('Se ha enviado una solicitud de semilla');

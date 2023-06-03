@@ -44,7 +44,7 @@ ul {
 }
 
 
-#carouselExampleIndicators .carousel-inner {
+#carouselExampleIndicators .item-imagenes {
     height: 400px; /* Establece una altura fija para el carrusel */
     display: flex;
     align-items: center; /* Centra verticalmente las imágenes */

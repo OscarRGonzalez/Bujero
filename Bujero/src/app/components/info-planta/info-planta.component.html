@@ -11,7 +11,7 @@
                 [attr.data-bs-target]="'#carouselExampleIndicators'" [attr.data-bs-slide-to]="i"
                 class="active bottom-arrow" [attr.aria-current]="true" [attr.aria-label]="'Slide ' + i"></button>
         </div>
-        <div class="carousel-inner">
+        <div class="carousel-inner item-imagenes">
             <div *ngFor="let imagen of imagenes; let i = index" class="carousel-item" [class.active]="i === 0">
                 <img [src]="imagen" class="d-block w-100" alt="{{planta}}">
             </div>
@@ -52,10 +52,29 @@
             </li>
             <li>
                 <span class="fw-bold">Crecimiento</span>
-                <ul>
-                    <li *ngFor="let crecimiento of crecimientos">{{crecimiento}}</li>
-                </ul>
             </li>
         </ul>
+        <div id="carouselExampleIndicators" class="carousel slide">
+            <div class="carousel-indicators">
+                <button *ngFor="let imagen of crecimientos; let i = index" type="button"
+                    [attr.data-bs-target]="'#carouselExampleIndicators'" [attr.data-bs-slide-to]="i"
+                    class="active bottom-arrow" [attr.aria-current]="true" [attr.aria-label]="'Slide ' + i"></button>
+            </div>
+            <div class="carousel-inner ">
+                <div *ngFor="let imagen of crecimientos; let i = index" class="carousel-item" [class.active]="i === 0">
+                    <img [src]="imagen" class="d-block w-100" alt="{{planta}}">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon rounded-4 flecha-left" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon rounded-4  flecha-right" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
     </div>
 </div>
