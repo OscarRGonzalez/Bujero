@@ -1,33 +1,61 @@
-<div class=" contenedor">
-    <div id="carouselExampleIndicators" class="carousel slide divisionb ">
+<div class="contenedor">
+    <div class="iconos-top mx-3 seed-fixed">
+        <img src="/assets/img/seedling-regular.png" class="seed" (click)="seedClicked()">
+    </div>
+    <div class="iconos-top mx-3 star-fixed">
+        <i class="fa-regular fa-star fa-2x" style="color: #3E6723;" (click)="starClicked()"></i>
+    </div>
+    <div id="carouselExampleIndicators" class="carousel slide divisionb">
         <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                aria-label="Slide 3"></button>
+            <button *ngFor="let imagen of imagenes; let i = index" type="button"
+                [attr.data-bs-target]="'#carouselExampleIndicators'" [attr.data-bs-slide-to]="i"
+                class="active bottom-arrow" [attr.aria-current]="true" [attr.aria-label]="'Slide ' + i"></button>
         </div>
         <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="/assets/img/autumn.png" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/img/Coleo.png" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/img/Coleo.png" class="d-block w-100" alt="...">
+            <div *ngFor="let imagen of imagenes; let i = index" class="carousel-item" [class.active]="i === 0">
+                <img [src]="imagen" class="d-block w-100" alt="{{planta}}">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
             data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="carousel-control-prev-icon rounded-4 flecha-left" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
             data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="carousel-control-next-icon rounded-4  flecha-right" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
+
+    </div>
+    <div class="container px-4 mt-2">
+        <h2 class="fw-bold">{{planta}}</h2>
+        <p>{{descripcion}}</p>
+        <ul>
+            <li>
+                <span class="fw-bold">Estaciones para sembrar</span>
+                <ul>
+                    <li *ngFor="let estacion of estaciones">{{estacion}}</li>
+                </ul>
+            </li>
+            <li>
+                <span class="fw-bold">Donde sembrar</span>
+                <ul>
+                    <p>{{dondeSembrar}}</p>
+                </ul>
+            </li>
+            <li>
+                <span class="fw-bold">Cuidados</span>
+                <ul>
+                    <li *ngFor="let cuidado of cuidados">{{cuidado}}</li>
+                </ul>
+            </li>
+            <li>
+                <span class="fw-bold">Crecimiento</span>
+                <ul>
+                    <li *ngFor="let crecimiento of crecimientos">{{crecimiento}}</li>
+                </ul>
+            </li>
+        </ul>
     </div>
 </div>

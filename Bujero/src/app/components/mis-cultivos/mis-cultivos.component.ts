@@ -13,8 +13,4 @@ export class MisCultivosComponent {
   constructor() {
 
   }
-
-
-
-
 }

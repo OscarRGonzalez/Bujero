@@ -1,3 +1,57 @@
 .carousel-control-next-icon {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
 }
+ul {
+    padding-left: 1rem;
+}
+.flecha-left{
+    background-image: url("../../../assets/img/left-arrow.png");
+    background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el contenedor */
+    background-position: center; /* Centra la imagen en el contenedor */
+    /* Otros estilos opcionales */
+    background-repeat: no-repeat; /* Evita la repetición de la imagen */
+}
+.flecha-right{
+    background-image: url("../../../assets/img/right-arrow.png");
+    background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el contenedor */
+    background-position: center; /* Centra la imagen en el contenedor */
+    /* Otros estilos opcionales */
+    background-repeat: no-repeat; /* Evita la repetición de la imagen */
+}
+.seed{
+    width: 39px;
+    height: 39px;
+}
+.iconos-top{
+    z-index: 50;
+}
+.seed-fixed{
+    position: absolute;
+    top: 10%;
+    left: 0;
+    z-index: 50;
+    box-shadow: 0px 8px 15px rgba(119, 255, 46, 0.1);
+}
+.star-fixed{
+    position: absolute;
+    top: 10%;
+    right: 0;
+    z-index: 50;
+    box-shadow: 0px 8px 15px rgba(119, 255, 46, 0.1);
+}
+.bottom-arrow{
+    background-color: #3E6723;
+}
+
+
+#carouselExampleIndicators .carousel-inner {
+    height: 400px; /* Establece una altura fija para el carrusel */
+    display: flex;
+    align-items: center; /* Centra verticalmente las imágenes */
+}
+
+#carouselExampleIndicators .carousel-item img {
+    object-fit: contain; /* Ajusta el tamaño de la imagen manteniendo su relación de aspecto */
+    max-height: 100%; /* Asegura que la imagen no exceda la altura del carrusel */
+    margin: 0 auto; /* Centra horizontalmente las imágenes */
+}

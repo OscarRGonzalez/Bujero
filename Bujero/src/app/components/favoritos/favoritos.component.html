@@ -1,1 +1,16 @@
-<p>favoritos works!</p>
+<div class="contenedor">
+    <div *ngFor="let item of cards; let i = index" class="card-mis-cultivos">
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <div class="div-img-planta d-flex flex-column justify-content-center align-items-center">
+                <div class="div-img-planta-nombre d-flex flex-row justify-content-between align-items-center">
+                    <img src="/assets/img/seedling-regular.png" class="seed" (click)="seedClicked()">
+                    <h3 class="fw-bold">{{item.nombre}}</h3>
+                    <i class="fa fa-star fa-2x" style="color: #3E6723;" (click)="starClicked()"></i>
+                </div>
+                <div class="div-img-planta-img">
+                    <img id="img-planta" src="{{item.img}}" alt="imagen de planta {{item.nombre}}">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
