@@ -6,26 +6,26 @@
   <div class="form-register">
     <form class="form-floating form-register">
       <div class="form-floating mb-3 form-inputs">
-        <input type="email" class="form-control input-form" id="floatingInput" placeholder="name@example.com"><span class="fa fa-user errspan"></span>
+        <input [(ngModel)]="email" name="email" type="email" class="form-control input-form" id="floatingInput" placeholder="name@example.com"><span class="fa fa-user errspan"></span>
         <label for="floatingInput" class="input-label">E-mail</label>
       </div>
       <div class="form-floating form-inputs">
-        <input type="password" class="form-control input-form" id="floatingPassword" placeholder="Password" ><span class="fa fa-key errspan"></span>
+        <input [(ngModel)]="password" name="password" type="password" class="form-control input-form" id="floatingPassword" placeholder="Password" ><span class="fa fa-key errspan"></span>
         <label for="floatingPassword" class="input-label">Contraseña</label>
       </div>
       <div class="form-floating form-inputs" id="repeatPass">
-        <input type="password" class="form-control input-form" id="floatingRepeatPassword" placeholder="Password" ><span class="fa fa-key errspan"></span>
+        <input [(ngModel)]="repeatPassword" name="repeatPassword" type="password" class="form-control input-form" id="floatingRepeatPassword" placeholder="Password" ><span class="fa fa-key errspan"></span>
         <label for="floatingPassword" class="input-label">Repite la contraseña</label>
       </div>
     </form>
   </div>
   <div class="div-btn-register">
-    <button type="button" class="btn btn-success">Regístrate</button>
+    <button (click)="registrarse()" type="button" class="btn btn-success">Regístrate</button>
   </div>
 
   <div class="div-a-login">
     <label>¿Ya tienes cuenta?</label>
-    <button type="button" class="btn btn-success btn-a-login">Inicia sesión</button>
+    <button (click)="irLogin()" type="button" class="btn btn-success btn-a-login">Inicia sesión</button>
   </div>
 
 </div>

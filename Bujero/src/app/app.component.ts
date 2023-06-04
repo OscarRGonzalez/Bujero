@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { plantas as plantas_json } from '../assets/info_jsons/plantas';
-import { usuarios as usuarios_json } from '../assets/info_jsons/usuarios';
 import { SharedServiceService } from '../app/shared-service.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,8 +9,6 @@ import { SharedServiceService } from '../app/shared-service.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  usuarios: any = usuarios_json;
-  plantas: any = plantas_json;
   title = 'Bujero';
   title_pagina: any = "Home";
   select_cultivos: Boolean = false;
@@ -20,12 +17,11 @@ export class AppComponent {
   select_busqueda: Boolean = false;
   select_estacion: Boolean = false;
 
-  constructor(private shareService: SharedServiceService  ) {
-    this.usuarios = sessionStorage.getItem('usuarios');
-    this.plantas = sessionStorage.getItem('plantas');
+  constructor(private shareService: SharedServiceService,public router: Router ) {
     this.shareService.sharedData.subscribe(data=> { this.title_pagina=data })
 
   }
+
 
 
   toHome() {
@@ -77,6 +73,10 @@ export class AppComponent {
     this.select_home = false;
 
     this.title_pagina = "Mis cultivos";
+  }
+  
+  iniciarSesion(){
+    this.router.navigate(['/login']);
   }
 
 }

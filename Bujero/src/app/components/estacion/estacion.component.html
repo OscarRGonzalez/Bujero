@@ -1,15 +1,17 @@
-<p>estacion works!</p>
-
-<div class="packtodo row mx-auto g-5 vh-100 contenedor my-auto pb-5">
-    <div class="packtodo1 col-6 my-auto flex-column justify-content-center align-items-center " *ngFor="let planta of plantas">
+<div class="packtodo row mx-auto g-5 contenedor my-auto pb-5 contenedor px-3">
+    <div class="packtodo1 col-6 my-auto flex-column justify-content-center align-items-center " *ngFor="let item of plantasEstaciones">
         <div class="botones-container">
-            <img src="assets/img/seedling-regular.png" *ngIf="planta.misCultivos" class="planta-sin-relleno" (click)="toggleMisCultivos(planta)">
-            <img src="assets/img/seedling-solid.png" *ngIf="!planta.misCultivos" class="planta-relleno" (click)="toggleMisCultivos(planta)">
+            <img *ngIf="!comprobarMisCultivos(item) "src="assets/img/seedling-regular.png"  class="planta-sin-relleno" (click)="seedClicked(item)">
+            <img *ngIf="comprobarMisCultivos(item)" src="assets/img/seedling-solid.png" class="planta-relleno" (click)="seedClicked(item)">
 
-            <i *ngIf="planta.star" class="star-sin-relleno fa-regular fa-star fa-2x" style="color: #3E6723;" (click)="toggleStar(planta)"></i>
-            <i *ngIf="!planta.star" class="star-relleno fa fa-star fa-2x" style="color: #3E6723;" (click)="toggleStar(planta)"></i>
+            <i *ngIf="!comprobarFavorito(item)" class="star-sin-relleno fa-regular fa-star fa-2x" style="color: #3E6723;"  (click)="starClicked(item)"></i>
+            <i *ngIf="comprobarFavorito(item)" class="star-relleno fa fa-star fa-2x" style="color: #3E6723;"  (click)="starClicked(item)"></i>
         </div>
-        <img class="img-plant" src ={{planta.path}} alt="Imagen de la planta">
-        <p class="text-center">{{ planta.nombre }}</p>
+        <img class="img-plant" src ={{item.imagenes[0]}} alt="Imagen de la planta" (click)="mostrarPlanta(item)">
+        <p class="text-center">{{ item.nombre }}</p>
+    </div>
+    <div *ngIf="plantasEstaciones.length === 0" class="text-center">
+        <h1 class="fw-bold">No hay plantas en esta estación</h1>
+        <img src="assets/img/bujero_logo.png" alt="Bujero" class="img-fluid">
     </div>
 </div>

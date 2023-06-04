@@ -23,7 +23,7 @@ const appRoutes = [
     { path: 'favoritos', component: FavoritosComponent },
     { path: 'mis-cultivos', component: MisCultivosComponent },
     { path: 'log-out', component: LogOutComponent },
-  ];
+    { path: '**', component: HomeComponent}];
 
 
 

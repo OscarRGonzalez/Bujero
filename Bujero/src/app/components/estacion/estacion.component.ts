@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { BujeroDataService } from '../../bujero-data.service';
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-estacion',
@@ -6,54 +9,107 @@ import { Component } from '@angular/core';
   styleUrls: ['./estacion.component.css']
 })
 export class EstacionComponent {
+  usuario = 'asas@gmail.com';
   
+  usuarios: any[] = [];
+  plantas: any[] = [];
+  plantasEstaciones: any[] = [];
+  favorito = false;
+  misCultivos = false;
+  plantaBuscada = "";
+  estacion = "";
 
-  toggleStar(planta: any) {
-    planta.star = !planta.star;
-  }
+  constructor(private bujeroDataService: BujeroDataService, private router: Router, private route: ActivatedRoute) {
+    const usuariosSession = sessionStorage.getItem('usuarios');
+    const plantasSession = sessionStorage.getItem('plantas');
 
-  toggleMisCultivos(planta: any) {
-    planta.misCultivos = !planta.misCultivos;
-  }
-
-
-  plantas = [
-    {
-      nombre: 'Coleo',
-      path: 'assets/img/Coleo.png', 
-      misCultivos: true,
-      star: false
-    },{
-      nombre: 'Primula',
-      path: 'assets/img/primula.jpg',
-      misCultivos: false,
-      star: true
-    },{
-      nombre: 'Margarita',
-      path: 'assets/img/margaritas.jpg',
-      misCultivos: false,
-      star: true
-    },{
-      nombre: 'Girasol',
-      path: 'assets/img/girasoles.png',
-      misCultivos: false,
-      star: false
-    },{
-      nombre: 'Rosa',
-      path: 'assets/img/rosas.png',
-      misCultivos: true,
-      star: true
-    },{
-      nombre: 'Hortensia',
-      path: 'assets/img/hortensia.png', 
-      misCultivos: false,
-      star: true
-    },{
-      nombre: 'Tulipanes',
-      path: 'assets/img/tulipanes.webp', 
-      misCultivos: true,
-      star: true
+    if (usuariosSession && plantasSession) {
+      this.usuarios = JSON.parse(usuariosSession);
+      this.plantas = JSON.parse(plantasSession);
     }
-  ];
+  }
+  
+  ngOnInit(): void {
+    console.log(this.usuarios);
+    console.log(this.plantasEstaciones);
+    console.log(this.estacion);
+    if (history.state && history.state.estacion) {
+      this.estacion = history.state.estacion;
+    }
+    if (this.estacion === "todas") {
+      this.plantasEstaciones = this.plantas;
+    } else {
+    this.plantasEstaciones = this.bujeroDataService.getPlantasEstaciones(this.estacion);
+    }
 
+  }
+  
+  seedClicked(planta: any) {
+    this.plantaBuscada = planta.nombre;
+    console.log(this.bujeroDataService.usuarios);
+    console.log(this.bujeroDataService.plantas);
+    const plantaColeo = this.bujeroDataService.obtenerPlanta(this.plantaBuscada);
+    console.log(plantaColeo);
+
+    const usuarioIndex = this.bujeroDataService.usuarios.findIndex(
+      (user: { correo: string }) => user.correo === this.usuario
+    );
+    if (usuarioIndex !== -1) {
+      // Verificar si la planta ya está en mis cultivos
+      if (!this.bujeroDataService.isPlantaInMisCultivos(this.usuario, this.plantaBuscada)) {
+        this.bujeroDataService.addPlantaToMisCultivos(this.usuario, this.plantaBuscada);
+        console.log(this.bujeroDataService.usuarios);
+        this.misCultivos = true;
+      } else {
+        // preguntar si quiere eliminarla de mis cultivos y luego eliminarla
+        if (confirm('La planta ya está en mis cultivos. ¿Deseas eliminarla?')) {
+          this.bujeroDataService.deletePlantaFromMisCultivos(this.usuario, this.plantaBuscada);
+          console.log(this.bujeroDataService.usuarios);
+          this.misCultivos = false;
+        }
+        console.log('La planta ya está en mis cultivos');
+      }
+    }
+
+    sessionStorage.setItem('usuarios', JSON.stringify(this.bujeroDataService.usuarios));
+  }
+  starClicked(planta: any) {
+    this.plantaBuscada = planta.nombre;
+    console.log(this.bujeroDataService.usuarios);
+    const plantaColeo = this.bujeroDataService.obtenerPlanta(this.plantaBuscada);
+    console.log(plantaColeo);
+
+    const usuarioIndex = this.bujeroDataService.usuarios.findIndex(
+      (user: { correo: string }) => user.correo === this.usuario
+    );
+    if (usuarioIndex !== -1) {
+      // Verificar si la planta ya está en favoritos
+      if (!this.bujeroDataService.isPlantaInFavorites(this.usuario, this.plantaBuscada)) {
+        this.bujeroDataService.addPlantaToFavoritos(this.usuario, this.plantaBuscada);
+        console.log(this.bujeroDataService.usuarios);
+        this.favorito = true;
+      } else {
+        // pedir confirmación para eliminar de favoritos y luego eliminarla
+        if (confirm('La planta ya está en favoritos. ¿Deseas eliminarla?')) {
+          this.bujeroDataService.deletePlantaFromFavoritos(this.usuario, this.plantaBuscada);
+          console.log(this.bujeroDataService.usuarios);
+          this.favorito = false;
+        }
+        console.log('La planta ya está en favoritos');
+      }
+    }
+    sessionStorage.setItem('usuarios', JSON.stringify(this.bujeroDataService.usuarios));
+  }
+  comprobarFavorito(planta: any){
+    return this.bujeroDataService.isPlantaInFavorites(this.usuario, planta.nombre);
+  }
+  comprobarMisCultivos(planta: any){
+    return this.bujeroDataService.isPlantaInMisCultivos(this.usuario, planta.nombre);
+  }
+  mostrarPlanta(planta: any){
+    console.log(planta);
+    this.router.navigate(['/planta'], { state: { planta } });
+  }
 }
+
+

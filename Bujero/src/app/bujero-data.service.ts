@@ -56,6 +56,7 @@ export class BujeroDataService {
 
   guardarDatos(): void {
     sessionStorage.setItem('usuarios', JSON.stringify(this.usuarios));
+    sessionStorage.setItem('plantas', JSON.stringify(this.plantas));
   }
 
   addPlantaToMisCultivos(usuarioCorreo: string, plantaNombre: string): void {
@@ -133,5 +134,21 @@ export class BujeroDataService {
       return misCultivos;
     }
     return [];
+  }
+  getPlantasEstaciones(estacion: string): any[] {
+    const plantasEstacion = this.plantas.filter((planta: { estaciones: string[] }) => planta.estaciones.includes(estacion));
+    return plantasEstacion;
+  }
+  agregarUsuario(usuario: any): void {
+    this.usuarios.push(usuario);
+    this.guardarDatos();
+  }
+  getUserFromSessionStorage(): any {
+    const user = sessionStorage.getItem('usuario');
+    console.log(user);
+    if (user) {
+      return JSON.parse(user);
+    }
+    return null;
   }
 }

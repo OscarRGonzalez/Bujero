@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class FavoritosComponent {
   
+  
   usuario = 'asas@gmail.com';
   
   usuarios: any[] = [];
@@ -32,7 +33,11 @@ export class FavoritosComponent {
   ngOnInit(): void {
     console.log(this.usuarios);
     console.log(this.plantasFavoritas);
-
+    this.usuario = this.bujeroDataService.getUserFromSessionStorage();
+    if (!this.usuario) {
+      alert('Inicio de sesión requerido');
+      this.router.navigate(['/login']);
+    }
   }
   
   seedClicked(planta: any) {
