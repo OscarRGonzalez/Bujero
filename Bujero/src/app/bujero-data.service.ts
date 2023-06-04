@@ -19,14 +19,22 @@ export class BujeroDataService {
     console.log("Se han cargado los datos");
     const usuariosSession = sessionStorage.getItem('usuarios');
     const plantasSession = sessionStorage.getItem('plantas');
+    const usuarioSession = sessionStorage.getItem('usuario');
 
     if (usuariosSession && plantasSession) {
       this.usuarios = JSON.parse(usuariosSession);
       this.plantas = JSON.parse(plantasSession);
     }
+    if (usuarioSession) {
+      if(!this.isUsuarioInUsuarios(usuarioSession)){
+        sessionStorage.removeItem('usuario');
+      }
+    }
   }
 
-
+  isUsuarioInUsuarios(correo: string): boolean {
+    return this.usuarios.some((user: { correo: string }) => user.correo === correo);
+  }
 
   isPlantaInFavorites(usuarioCorreo: string, plantaNombre: string): boolean {
     const usuario = this.usuarios.find((user: { correo: string }) => user.correo === usuarioCorreo);
@@ -141,14 +149,16 @@ export class BujeroDataService {
   }
   agregarUsuario(usuario: any): void {
     this.usuarios.push(usuario);
+    console.log(this.usuarios);
     this.guardarDatos();
   }
   getUserFromSessionStorage(): any {
     const user = sessionStorage.getItem('usuario');
     console.log(user);
     if (user) {
-      return JSON.parse(user);
+      return user;
     }
     return null;
   }
+  
 }

@@ -26,7 +26,7 @@ export class FavoritosComponent {
     if (usuariosSession && plantasSession) {
       this.usuarios = JSON.parse(usuariosSession);
       this.plantas = JSON.parse(plantasSession);
-      this.plantasFavoritas = this.bujeroDataService.getPlantasFavoritas(this.usuario);
+      
     }
   }
   
@@ -34,22 +34,20 @@ export class FavoritosComponent {
     console.log(this.usuarios);
     console.log(this.plantasFavoritas);
     this.usuario = this.bujeroDataService.getUserFromSessionStorage();
+    console.log(this.usuario);
     if (!this.usuario) {
       alert('Inicio de sesión requerido');
       this.router.navigate(['/login']);
     }
+    this.plantasFavoritas = this.bujeroDataService.getPlantasFavoritas(this.usuario);
   }
   
   seedClicked(planta: any) {
     this.plantaBuscada = planta.nombre;
-    console.log(this.bujeroDataService.usuarios);
-    console.log(this.bujeroDataService.plantas);
     const plantaColeo = this.bujeroDataService.obtenerPlanta(this.plantaBuscada);
-    console.log(plantaColeo);
 
     const usuarioIndex = this.bujeroDataService.usuarios.findIndex(
-      (user: { correo: string }) => user.correo === this.usuario
-    );
+      (user: { correo: string }) => user.correo === this.usuario);
     if (usuarioIndex !== -1) {
       // Verificar si la planta ya está en mis cultivos
       if (!this.bujeroDataService.isPlantaInMisCultivos(this.usuario, this.plantaBuscada)) {

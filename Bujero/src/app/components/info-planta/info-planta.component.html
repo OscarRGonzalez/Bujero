@@ -1,11 +1,11 @@
 <div class="contenedor">
     <div class="iconos-top mx-3 seed-fixed">
-        <img *ngIf="!comprobarMisCultivos()" src="/assets/img/seedling-regular.png" class="seed" (click)="seedClicked()">
-        <img *ngIf="comprobarMisCultivos()" src="/assets/img/seedling-solid.png" class="seed" (click)="seedClicked()">
+        <img *ngIf="!comprobarMisCultivos(plantaMostrada)" src="/assets/img/seedling-regular.png" class="seed" (click)="seedClicked(plantaMostrada)">
+        <img *ngIf="comprobarMisCultivos(plantaMostrada)" src="/assets/img/seedling-solid.png" class="seed" (click)="seedClicked(plantaMostrada)">
     </div>
     <div class="iconos-top mx-3 star-fixed">
-        <i *ngIf="!comprobarFavorito()" class="fa-regular fa-star fa-2x" style="color: #3E6723;" (click)="starClicked()"></i>
-        <i *ngIf="comprobarFavorito()" class="fa-solid fa-star fa-2x" style="color: #3E6723;" (click)="starClicked()"></i>
+        <i *ngIf="!comprobarFavorito(plantaMostrada)" class="fa-regular fa-star fa-2x" style="color: #3E6723;" (click)="starClicked(plantaMostrada)"></i>
+        <i *ngIf="comprobarFavorito(plantaMostrada)" class="fa-solid fa-star fa-2x" style="color: #3E6723;" (click)="starClicked(plantaMostrada)"></i>
     </div>
     <div id="carouselExampleIndicators" class="carousel slide divisionb">
         <div class="carousel-indicators">

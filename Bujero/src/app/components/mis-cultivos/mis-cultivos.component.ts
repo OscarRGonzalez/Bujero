@@ -25,7 +25,6 @@ export class MisCultivosComponent {
     if (usuariosSession && plantasSession) {
       this.usuarios = JSON.parse(usuariosSession);
       this.plantas = JSON.parse(plantasSession);
-      this.plantasCultivadas = this.bujeroDataService.getMisCultivos(this.usuario);
     }
   }
   
@@ -33,6 +32,13 @@ export class MisCultivosComponent {
     console.log(this.usuarios);
     console.log(this.plantas);
     console.log(this.plantasCultivadas);
+    this.usuario = this.bujeroDataService.getUserFromSessionStorage();
+    console.log(this.usuario);
+    if (!this.usuario) {
+      alert('Inicio de sesión requerido');
+      this.router.navigate(['/login']);
+    }
+    this.plantasCultivadas = this.bujeroDataService.getPlantasFavoritas(this.usuario);
 
   }
   

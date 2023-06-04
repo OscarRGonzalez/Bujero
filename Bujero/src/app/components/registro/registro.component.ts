@@ -21,7 +21,7 @@ export class RegistroComponent {
       if (usuario) {
         alert("El usuario ya existe");
       } else {
-        const usuario = { email: this.email, contrasenia: this.password, cultivos: [], favoritos: []}
+        const usuario = { correo: this.email, contrasenia: this.password, mis_cultivos: [], favoritos: []}
         this.bujeroDataService.agregarUsuario(usuario);
         sessionStorage.setItem("usuario", this.email);
         this.router.navigate(['/home']);

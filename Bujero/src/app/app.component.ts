@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SharedServiceService } from '../app/shared-service.service';
 import { Router } from '@angular/router';
+import { BujeroDataService } from '../app/bujero-data.service';
 
 
 @Component({
@@ -17,10 +18,10 @@ export class AppComponent {
   select_busqueda: Boolean = false;
   select_estacion: Boolean = false;
 
-  constructor(private shareService: SharedServiceService,public router: Router ) {
+  constructor(private shareService: SharedServiceService,public router: Router, private bujeroDataService: BujeroDataService, ) {
     this.shareService.sharedData.subscribe(data=> { this.title_pagina=data })
-
   }
+
 
 
 
@@ -76,7 +77,12 @@ export class AppComponent {
   }
   
   iniciarSesion(){
-    this.router.navigate(['/login']);
+    if (this.bujeroDataService.getUserFromSessionStorage()) {
+      this.router.navigate(['/log-out']);
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
+    
 
 }
