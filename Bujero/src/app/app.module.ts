@@ -14,6 +14,7 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { routing } from "./app-routing";
 import { CardMisCultivosComponent } from './components/card-mis-cultivos/card-mis-cultivos.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SharedServiceService } from './shared-service.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     routing,
     HttpClientModule
   ],
-  providers: [],
+  providers: [SharedServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
