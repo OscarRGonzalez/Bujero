@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { plantas as plantas_json } from '../assets/info_jsons/plantas';
 import { usuarios as usuarios_json } from '../assets/info_jsons/usuarios';
+import { SharedServiceService } from '../app/shared-service.service';
 
 
 @Component({
@@ -19,10 +20,13 @@ export class AppComponent {
   select_busqueda: Boolean = false;
   select_estacion: Boolean = false;
 
-  constructor() {
+  constructor(private shareService: SharedServiceService  ) {
     this.usuarios = sessionStorage.getItem('usuarios');
     this.plantas = sessionStorage.getItem('plantas');
+    this.shareService.sharedData.subscribe(data=> { this.title_pagina=data })
+
   }
+
 
   toHome() {
     this.title_pagina = "Home";
