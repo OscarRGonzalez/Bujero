@@ -1,6 +1,5 @@
-[{
-  "0": {
-    "correo": "asas@gmail.com",
+{
+  "asas@gmail.com": {
     "contraseña": "1234",
     "favoritos": {
       "Margarita": {
@@ -105,6 +104,6 @@
       }
     }
   }
-}]
+}
 
 
