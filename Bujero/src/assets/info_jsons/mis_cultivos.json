@@ -4,7 +4,7 @@
     "nombre": "Margarita",
     "maniana": true,
     "tarde": false,
-    "img": "assets/img/margaritas.png",
+    "img": "assets/img/margaritas.jpg",
     "nota": "la planta está en buen estado"
   },
   {
@@ -20,7 +20,7 @@
     "nombre": "primulas",
     "maniana": false,
     "tarde": true,
-    "img": "assets/img/primulas.jpg",
+    "img": "assets/img/primula.jpg",
     "nota": "la planta"
   }
 ]
