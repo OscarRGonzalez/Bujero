@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SharedServiceService } from '../../shared-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,7 @@ import { SharedServiceService } from '../../shared-service.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  constructor(private shareService: SharedServiceService ) {
+  constructor(private shareService: SharedServiceService, public router: Router ) {
     this.shareService.setParam("Home")
   }
 
@@ -29,5 +30,9 @@ export class HomeComponent {
 
   changeTodasEstaciones() {
     this.shareService.setParam("General")
+  }
+
+  estacion(estacion: string){
+    this.router.navigate(['/estacion'], {state:{estacion: estacion}});
   }
 }

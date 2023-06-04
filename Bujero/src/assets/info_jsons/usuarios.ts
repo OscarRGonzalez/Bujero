@@ -1,7 +1,7 @@
 export const usuarios = [
     {
         "correo": "asas@gmail.com",
-        "contraseña": "1234",
+        "contrasenia": "1234",
         "favoritos": [
             {
                 "nombre": "Margarita",

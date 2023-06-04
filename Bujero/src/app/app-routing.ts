@@ -21,6 +21,7 @@ const appRoutes = [
     { path: 'estacion', component: EstacionComponent },
     { path: 'favoritos', component: FavoritosComponent },
     { path: 'mis-cultivos', component: MisCultivosComponent },
+    { path: '**', component: HomeComponent}
   ];
 
 

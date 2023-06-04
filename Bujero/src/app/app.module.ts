@@ -15,6 +15,7 @@ import { routing } from "./app-routing";
 import { CardMisCultivosComponent } from './components/card-mis-cultivos/card-mis-cultivos.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SharedServiceService } from './shared-service.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { SharedServiceService } from './shared-service.service';
     BrowserModule,
     AppRoutingModule,
     routing,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [SharedServiceService],
   bootstrap: [AppComponent]
