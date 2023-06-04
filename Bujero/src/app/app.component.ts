@@ -1,4 +1,12 @@
 import { Component } from '@angular/core';
+interface Usuario {
+  contraseña: string;
+  favoritos: { [key: string]: any };
+}
+
+interface Usuarios {
+  [key: string]: Usuario;
+}
 
 @Component({
   selector: 'app-root',

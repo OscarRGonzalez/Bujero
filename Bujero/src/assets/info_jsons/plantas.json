@@ -1,5 +1,6 @@
-{
-  "Margarita": {
+[
+  {
+  "nombre": "Margarita",
     "descripcion": "la planta está en buen estado",
     "estaciones": {
       "Verano": true,
@@ -21,7 +22,8 @@
       "imagen3": "/assets/img/margarita.jpg"
     }
   },
-  "Coleo": {
+  {
+  "nombre": "Coleo",
     "descripcion": "la planta está en MAL estado",
     "estaciones": {
       "Verano": false,
@@ -43,7 +45,4 @@
       "imagen3": "/assets/img/margarita.jpg"
     }
   }
-}
-
-
-
+]

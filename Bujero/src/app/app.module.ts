@@ -13,6 +13,7 @@ import { MisCultivosComponent } from './components/mis-cultivos/mis-cultivos.com
 import { RegistroComponent } from './components/registro/registro.component';
 import { routing } from "./app-routing";
 import { CardMisCultivosComponent } from './components/card-mis-cultivos/card-mis-cultivos.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { CardMisCultivosComponent } from './components/card-mis-cultivos/card-mi
   imports: [
     BrowserModule,
     AppRoutingModule,
-    routing
+    routing,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

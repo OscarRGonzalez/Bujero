@@ -1,13 +1,8 @@
 import { Component } from '@angular/core';
-import plantas_json from '../../../assets/info_jsons/plantas.json';
-import usuarios_json from '../../../assets/info_jsons/usuarios.json';
+import { plantas as plantas_json } from '../../../assets/info_jsons/plantas';
+import { usuarios as usuarios_json } from '../../../assets/info_jsons/usuarios';
+import { BujeroDataService } from '../../bujero-data.service';
 
-interface Usuarios {
-  [key: string]: {
-    contraseña: string;
-    favoritos: { [key: string]: any };
-  };
-}
 
 @Component({
   selector: 'app-info-planta',
@@ -16,214 +11,90 @@ interface Usuarios {
 })
 export class InfoPlantaComponent {
 
-  planta = 'Margarita';
-  descripcion = 'La margarita es una planta herbácea, perenne, de la familia de las compuestas, con tallos de hasta 60 cm de altura, erectos, ramificados y pubescentes. Las hojas son alternas, pecioladas, de 2-7 cm de largo, ovadas, dentadas, con pelos glandulares y no glandulares. Las flores son blancas, con el centro amarillo, de 2-3 cm de diámetro, dispuestas en capítulos solitarios en el extremo de los tallos. Los frutos son aquenios de 1-2 mm de largo, con vilano de 2-3 mm de largo.';
-  estaciones = ['Primavera', 'Verano', 'Otoño', 'Invierno'];
-  dondeSembrar = 'se puede sembrar en cualquier lugar en el que le de el sol'; 
-  cuidados = ['regarla cada 2 dias', 'cortarla cada 2 meses', 'abonarla cada 3 meses'];
-  crecimientos = ['/assets/img/margarita-crecimiento.webp'];
-  imagenes = ["/assets/img/Coleo.png","/assets/img/margarita-partes.jpg","/assets/img/margarita.jpg"]
-  usuario = "asas@gmail.com";
-  
-  usuarios: Usuarios = usuarios_json;
-  plantas = plantas_json;
-  plantaBuscada = "Coleo";
+  constructor(private bujeroDataService: BujeroDataService) {
+    
+  }
+  ngOnInit(): void {
+    this.plantaMostrada = this.bujeroDataService.obtenerPlanta(this.plantaBuscada);
+    console.log(this.usuarios);
+    this.iamgenes_prueba = Object.values(this.plantaMostrada.imagenes);
+  }
 
+  usuario = 'asas@gmail.com';
+
+  usuarios: any = usuarios_json;
+  plantas: any = plantas_json;
+  plantaBuscada = 'Coleo';
+  plantaMostrada: any = [];
+  iamgenes_prueba: any = [];
+  favorito = false;
+  misCultivos = false;
 
   seedClicked() {
-    alert('Se ha enviado una solicitud de semilla');
-    console.log(this.plantas);
-    console.log(this.usuarios);
-    console.log(this.plantaBuscada);
-    const plantaBuscada = "Coleo";
-    
-    console.log(this.usuarios[this.usuario]); // Verificar si se encuentra el usuario actual en this.usuarios
-    
-    const plantaEncontrada = this.plantas[plantaBuscada];
-    console.log(plantaEncontrada);
-  
-    if (plantaEncontrada) {
-      console.log(plantaEncontrada);
-    } else {
-      console.log("La planta no se encontró.");
+    console.log(this.bujeroDataService.usuarios);
+    console.log(this.bujeroDataService.plantas);
+    const plantaColeo = this.bujeroDataService.obtenerPlanta(this.plantaBuscada);
+    console.log(plantaColeo);
+
+    const usuarioIndex = this.bujeroDataService.usuarios.findIndex(
+      (user: { correo: string }) => user.correo === this.usuario
+    );
+    if (usuarioIndex !== -1) {
+      // Verificar si la planta ya está en mis cultivos
+      if (!this.bujeroDataService.isPlantaInMisCultivos(this.usuario, this.plantaBuscada)) {
+        this.bujeroDataService.addPlantaToMisCultivos(this.usuario, this.plantaBuscada);
+        console.log(this.bujeroDataService.usuarios);
+        this.misCultivos = true;
+      } else {
+        // preguntar si quiere eliminarla de mis cultivos y luego eliminarla
+        if (confirm('La planta ya está en mis cultivos. ¿Deseas eliminarla?')) {
+          this.bujeroDataService.deletePlantaFromMisCultivos(this.usuario, this.plantaBuscada);
+          console.log(this.bujeroDataService.usuarios);
+          this.misCultivos = false;
+        }
+        console.log('La planta ya está en mis cultivos');
+      }
     }
-    
-  
-    if (this.usuarios[this.usuario].favoritos) { // Verificar si favoritos está inicializado para el usuario actual
-      console.log("si está inicializado")
-      this.usuarios[this.usuario].favoritos[plantaBuscada] = this.plantas[plantaBuscada];
-    } else {
-      console.log("no está inicializado")   
-      this.usuarios[this.usuario].favoritos = { [plantaBuscada]: this.plantas[plantaBuscada] }; // Inicializar favoritos para el usuario actual
-    }
-  
-    console.log(this.usuarios[this.usuario].favoritos);
+
+    sessionStorage.setItem('usuarios', JSON.stringify(this.bujeroDataService.usuarios));
   }
+
   starClicked() {
-    alert('Se ha enviado una solicitud de estrella');
-  }
-  
-/*
-{
-  "Margarita": {
-    "descripcion": "la planta está en buen estado",
-    "estaciones": {
-      "Verano": true,
-      "Primavera": true
-    },
-    "dondeSembrar": "en el jardin",
-    "cuidados": {
-      "regarla cada 2 dias": true,
-      "cortarla cada 2 meses": true,
-      "abonarla cada 3 meses": true
-    },
-    "creciemiento": {
-      "imagen1": "/assets/img/margarita-crecimiento.webp",
-      "imagen2": "/assets/img/margarita-crecimiento.webp"
-    },
-    "imagenes": {
-      "imagen1": "/assets/img/Coleo.png",
-      "imagen2": "/assets/img/margarita-partes.jpg",
-      "imagen3": "/assets/img/margarita.jpg"
-    }
-  },
-  "Coleo": {
-    "descripcion": "la planta está en MAL estado",
-    "estaciones": {
-      "Verano": false,
-      "Primavera": true
-    },
-    "dondeSembrar": "en el jardin",
-    "cuidados": {
-      "regarla cada 2 dias": false,
-      "cortarla cada 2 meses": true,
-      "abonarla cada 3 meses": true
-    },
-    "creciemiento": {
-      "imagen1": "/assets/img/margarita-crecimiento.webp",
-      "imagen2": "/assets/img/margarita-crecimiento.webp"
-    },
-    "imagenes": {
-      "imagen1": "/assets/img/Coleo.png",
-      "imagen2": "/assets/img/margarita-partes.jpg",
-      "imagen3": "/assets/img/margarita.jpg"
-    }
-  }
-}
+    console.log(this.bujeroDataService.usuarios);
+    const plantaColeo = this.bujeroDataService.obtenerPlanta(this.plantaBuscada);
+    console.log(plantaColeo);
 
-
-
-*/
-/*{
-  "asas@gmail.com": {
-    "contraseña": "1234",
-    "favoritos": {
-      "Margarita": {
-        "descripcion": "la planta está en buen estado",
-        "estaciones": {
-          "Verano": true,
-          "Primavera": true
-        },
-        "dondeSembrar": "en el jardin",
-        "cuidados": {
-          "regarla cada 2 dias": true,
-          "cortarla cada 2 meses": true,
-          "abonarla cada 3 meses": true
-        },
-        "creciemiento": {
-          "imagen1": "/assets/img/margarita-crecimiento.webp",
-          "imagen2": "/assets/img/margarita-crecimiento.webp"
-        },
-        "imagenes": {
-          "imagen1": "/assets/img/Coleo.png",
-          "imagen2": "/assets/img/margarita-partes.jpg",
-          "imagen3": "/assets/img/margarita.jpg"
+    const usuarioIndex = this.bujeroDataService.usuarios.findIndex(
+      (user: { correo: string }) => user.correo === this.usuario
+    );
+    if (usuarioIndex !== -1) {
+      // Verificar si la planta ya está en favoritos
+      if (!this.bujeroDataService.isPlantaInFavorites(this.usuario, this.plantaBuscada)) {
+        this.bujeroDataService.addPlantaToFavoritos(this.usuario, this.plantaBuscada);
+        console.log(this.bujeroDataService.usuarios);
+        this.favorito = true;
+      } else {
+        // pedir confirmación para eliminar de favoritos y luego eliminarla
+        if (confirm('La planta ya está en favoritos. ¿Deseas eliminarla?')) {
+          this.bujeroDataService.deletePlantaFromFavoritos(this.usuario, this.plantaBuscada);
+          console.log(this.bujeroDataService.usuarios);
+          this.favorito = false;
         }
-      },
-      "Coleo": {
-        "descripcion": "la planta está en MAL estado",
-        "estaciones": {
-          "Verano": false,
-          "Primavera": true
-        },
-        "dondeSembrar": "en el jardin",
-        "cuidados": {
-          "regarla cada 2 dias": false,
-          "cortarla cada 2 meses": true,
-          "abonarla cada 3 meses": true
-        },
-        "creciemiento": {
-          "imagen1": "/assets/img/margarita-crecimiento.webp",
-          "imagen2": "/assets/img/margarita-crecimiento.webp"
-        },
-        "imagenes": {
-          "imagen1": "/assets/img/Coleo.png",
-          "imagen2": "/assets/img/margarita-partes.jpg",
-          "imagen3": "/assets/img/margarita.jpg"
-        }
-      }
-    },
-    "mis cultivos": {
-      "Margarita": {
-        "descripcion": "la planta está en buen estado",
-        "estaciones": {
-          "Verano": true,
-          "Primavera": true
-        },
-        "dondeSembrar": "en el jardin",
-        "cuidados": {
-          "regarla cada 2 dias": true,
-          "cortarla cada 2 meses": true,
-          "abonarla cada 3 meses": true
-        },
-        "creciemiento": {
-          "imagen1": "/assets/img/margarita-crecimiento.webp",
-          "imagen2": "/assets/img/margarita-crecimiento.webp"
-        },
-        "imagenes": {
-          "imagen1": "/assets/img/Coleo.png",
-          "imagen2": "/assets/img/margarita-partes.jpg",
-          "imagen3": "/assets/img/margarita.jpg"
-        },
-        "regada": {
-          "mañana": true,
-          "tarde": false
-        },
-        "nota": "la planta está en buen estado"
-      },
-      "Coleo": {
-        "descripcion": "la planta está en MAL estado",
-        "estaciones": {
-          "Verano": false,
-          "Primavera": true
-        },
-        "dondeSembrar": "en el jardin",
-        "cuidados": {
-          "regarla cada 2 dias": false,
-          "cortarla cada 2 meses": true,
-          "abonarla cada 3 meses": true
-        },
-        "creciemiento": {
-          "imagen1": "/assets/img/margarita-crecimiento.webp",
-          "imagen2": "/assets/img/margarita-crecimiento.webp"
-        },
-        "imagenes": {
-          "imagen1": "/assets/img/Coleo.png",
-          "imagen2": "/assets/img/margarita-partes.jpg",
-          "imagen3": "/assets/img/margarita.jpg"
-        },
-        "regada": {
-          "mañana": false,
-          "tarde": true
-        },
-        "nota": "la planta está en MAL estado"
+        console.log('La planta ya está en favoritos');
       }
     }
+    sessionStorage.setItem('usuarios', JSON.stringify(this.bujeroDataService.usuarios));
   }
-}
-
-
-*/
-
-
+  comprobarFavorito(){
+    if(this.bujeroDataService.isPlantaInFavorites(this.usuario, this.plantaBuscada)){
+      this.favorito = true;
+    }
+    return this.favorito;
+  }
+  comprobarMisCultivos(){
+    if(this.bujeroDataService.isPlantaInMisCultivos(this.usuario, this.plantaBuscada)){
+      this.misCultivos = true;
+    }
+    return this.misCultivos;
+  }
 }

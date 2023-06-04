@@ -1,109 +1,88 @@
-{
-  "asas@gmail.com": {
-    "contraseña": "1234",
-    "favoritos": {
-      "Margarita": {
-        "descripcion": "la planta está en buen estado",
-        "estaciones": {
-          "Verano": true,
-          "Primavera": true
-        },
-        "dondeSembrar": "en el jardin",
-        "cuidados": {
-          "regarla cada 2 dias": true,
-          "cortarla cada 2 meses": true,
-          "abonarla cada 3 meses": true
-        },
-        "creciemiento": {
-          "imagen1": "/assets/img/margarita-crecimiento.webp",
-          "imagen2": "/assets/img/margarita-crecimiento.webp"
-        },
-        "imagenes": {
-          "imagen1": "/assets/img/Coleo.png",
-          "imagen2": "/assets/img/margarita-partes.jpg",
-          "imagen3": "/assets/img/margarita.jpg"
+[
+  {
+    "correo":"asas@gmail.com",
+      "contraseña": "1234",
+      "favoritos": {
+        "Margarita": {
+          "descripcion": "la planta está en buen estado",
+          "estaciones": {
+            "Verano": true,
+            "Primavera": true
+          },
+          "dondeSembrar": "en el jardin",
+          "cuidados": {
+            "regarla cada 2 dias": true,
+            "cortarla cada 2 meses": true,
+            "abonarla cada 3 meses": true
+          },
+          "creciemiento": {
+            "imagen1": "/assets/img/margarita-crecimiento.webp",
+            "imagen2": "/assets/img/margarita-crecimiento.webp"
+          },
+          "imagenes": {
+            "imagen1": "/assets/img/Coleo.png",
+            "imagen2": "/assets/img/margarita-partes.jpg",
+            "imagen3": "/assets/img/margarita.jpg"
+          }
         }
       },
-      "Coleo": {
-        "descripcion": "la planta está en MAL estado",
-        "estaciones": {
-          "Verano": false,
-          "Primavera": true
+      "mis cultivos": {
+        "Margarita": {
+          "descripcion": "la planta está en buen estado",
+          "estaciones": {
+            "Verano": true,
+            "Primavera": true
+          },
+          "dondeSembrar": "en el jardin",
+          "cuidados": {
+            "regarla cada 2 dias": true,
+            "cortarla cada 2 meses": true,
+            "abonarla cada 3 meses": true
+          },
+          "creciemiento": {
+            "imagen1": "/assets/img/margarita-crecimiento.webp",
+            "imagen2": "/assets/img/margarita-crecimiento.webp"
+          },
+          "imagenes": {
+            "imagen1": "/assets/img/Coleo.png",
+            "imagen2": "/assets/img/margarita-partes.jpg",
+            "imagen3": "/assets/img/margarita.jpg"
+          },
+          "regada": {
+            "mañana": true,
+            "tarde": false
+          },
+          "nota": "la planta está en buen estado"
         },
-        "dondeSembrar": "en el jardin",
-        "cuidados": {
-          "regarla cada 2 dias": false,
-          "cortarla cada 2 meses": true,
-          "abonarla cada 3 meses": true
-        },
-        "creciemiento": {
-          "imagen1": "/assets/img/margarita-crecimiento.webp",
-          "imagen2": "/assets/img/margarita-crecimiento.webp"
-        },
-        "imagenes": {
-          "imagen1": "/assets/img/Coleo.png",
-          "imagen2": "/assets/img/margarita-partes.jpg",
-          "imagen3": "/assets/img/margarita.jpg"
+        "Coleo": {
+          "descripcion": "la planta está en MAL estado",
+          "estaciones": {
+            "Verano": false,
+            "Primavera": true
+          },
+          "dondeSembrar": "en el jardin",
+          "cuidados": {
+            "regarla cada 2 dias": false,
+            "cortarla cada 2 meses": true,
+            "abonarla cada 3 meses": true
+          },
+          "creciemiento": {
+            "imagen1": "/assets/img/margarita-crecimiento.webp",
+            "imagen2": "/assets/img/margarita-crecimiento.webp"
+          },
+          "imagenes": {
+            "imagen1": "/assets/img/Coleo.png",
+            "imagen2": "/assets/img/margarita-partes.jpg",
+            "imagen3": "/assets/img/margarita.jpg"
+          },
+          "regada": {
+            "mañana": false,
+            "tarde": true
+          },
+          "nota": "la planta está en MAL estado"
         }
-      }
-    },
-    "mis cultivos": {
-      "Margarita": {
-        "descripcion": "la planta está en buen estado",
-        "estaciones": {
-          "Verano": true,
-          "Primavera": true
-        },
-        "dondeSembrar": "en el jardin",
-        "cuidados": {
-          "regarla cada 2 dias": true,
-          "cortarla cada 2 meses": true,
-          "abonarla cada 3 meses": true
-        },
-        "creciemiento": {
-          "imagen1": "/assets/img/margarita-crecimiento.webp",
-          "imagen2": "/assets/img/margarita-crecimiento.webp"
-        },
-        "imagenes": {
-          "imagen1": "/assets/img/Coleo.png",
-          "imagen2": "/assets/img/margarita-partes.jpg",
-          "imagen3": "/assets/img/margarita.jpg"
-        },
-        "regada": {
-          "mañana": true,
-          "tarde": false
-        },
-        "nota": "la planta está en buen estado"
-      },
-      "Coleo": {
-        "descripcion": "la planta está en MAL estado",
-        "estaciones": {
-          "Verano": false,
-          "Primavera": true
-        },
-        "dondeSembrar": "en el jardin",
-        "cuidados": {
-          "regarla cada 2 dias": false,
-          "cortarla cada 2 meses": true,
-          "abonarla cada 3 meses": true
-        },
-        "creciemiento": {
-          "imagen1": "/assets/img/margarita-crecimiento.webp",
-          "imagen2": "/assets/img/margarita-crecimiento.webp"
-        },
-        "imagenes": {
-          "imagen1": "/assets/img/Coleo.png",
-          "imagen2": "/assets/img/margarita-partes.jpg",
-          "imagen3": "/assets/img/margarita.jpg"
-        },
-        "regada": {
-          "mañana": false,
-          "tarde": true
-        },
-        "nota": "la planta está en MAL estado"
       }
     }
-  }
-}
+]
 
 

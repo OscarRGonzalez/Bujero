@@ -1,19 +1,22 @@
 <div class="contenedor">
     <div class="iconos-top mx-3 seed-fixed">
-        <img src="/assets/img/seedling-regular.png" class="seed" (click)="seedClicked()">
+        <img *ngIf="!comprobarMisCultivos()" src="/assets/img/seedling-regular.png" class="seed" (click)="seedClicked()">
+        <img *ngIf="comprobarMisCultivos()" src="/assets/img/seedling-solid.png" class="seed" (click)="seedClicked()">
     </div>
     <div class="iconos-top mx-3 star-fixed">
-        <i class="fa-regular fa-star fa-2x" style="color: #3E6723;" (click)="starClicked()"></i>
+        <i *ngIf="!comprobarFavorito()" class="fa-regular fa-star fa-2x" style="color: #3E6723;" (click)="starClicked()"></i>
+        <i *ngIf="comprobarFavorito()" class="fa-solid fa-star fa-2x" style="color: #3E6723;" (click)="starClicked()"></i>
     </div>
     <div id="carouselExampleIndicators" class="carousel slide divisionb">
         <div class="carousel-indicators">
-            <button *ngFor="let imagen of imagenes; let i = index" type="button"
+            <button *ngFor="let imagen of plantaMostrada.imagenes; let i = index" type="button"
                 [attr.data-bs-target]="'#carouselExampleIndicators'" [attr.data-bs-slide-to]="i"
                 class="active bottom-arrow" [attr.aria-current]="true" [attr.aria-label]="'Slide ' + i"></button>
         </div>
         <div class="carousel-inner item-imagenes">
-            <div *ngFor="let imagen of imagenes; let i = index" class="carousel-item" [class.active]="i === 0">
-                <img [src]="imagen" class="d-block w-100" alt="{{planta}}">
+            <div *ngFor="let imagen of plantaMostrada.imagenes; let i = index" class="carousel-item"
+                [class.active]="i === 0">
+                <img [src]="imagen" class="d-block w-100" alt="{{plantaMostrada.planta}}">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
@@ -29,52 +32,55 @@
 
     </div>
     <div class="container px-4 mt-2">
-        <h2 class="fw-bold">{{planta}}</h2>
-        <p>{{descripcion}}</p>
+        <h2 class="fw-bold">{{plantaMostrada.nombre}}</h2>
+        <p>{{plantaMostrada.descripcion}}</p>
         <ul>
             <li>
                 <span class="fw-bold">Estaciones para sembrar</span>
                 <ul>
-                    <li *ngFor="let estacion of estaciones">{{estacion}}</li>
+                    <li *ngFor="let estacion of plantaMostrada.estaciones">{{estacion}}</li>
                 </ul>
             </li>
             <li>
                 <span class="fw-bold">Donde sembrar</span>
                 <ul>
-                    <p>{{dondeSembrar}}</p>
+                    <p>{{plantaMostrada.dondeSembrar}}</p>
                 </ul>
             </li>
             <li>
                 <span class="fw-bold">Cuidados</span>
                 <ul>
-                    <li *ngFor="let cuidado of cuidados">{{cuidado}}</li>
+                    <li *ngFor="let cuidado of plantaMostrada.cuidados">{{cuidado}}</li>
                 </ul>
             </li>
             <li>
                 <span class="fw-bold">Crecimiento</span>
             </li>
         </ul>
-        <div id="carouselExampleIndicators" class="carousel slide">
+        <div id="carouselCrecimientoIndicators" class="carousel slide">
             <div class="carousel-indicators">
-                <button *ngFor="let imagen of crecimientos; let i = index" type="button"
-                    [attr.data-bs-target]="'#carouselExampleIndicators'" [attr.data-bs-slide-to]="i"
-                    class="active bottom-arrow" [attr.aria-current]="true" [attr.aria-label]="'Slide ' + i"></button>
+                <button *ngFor="let imagen of plantaMostrada.crecimiento; let i = index" type="button"
+                    [attr.data-bs-target]="'#carouselCrecimientoIndicators'" [attr.data-bs-slide-to]="i"
+                    [class.active]="i === 0" [attr.aria-current]="i === 0" [attr.aria-label]="'Slide ' + i"
+                    class="active bottom-arrow"></button>
             </div>
-            <div class="carousel-inner ">
-                <div *ngFor="let imagen of crecimientos; let i = index" class="carousel-item" [class.active]="i === 0">
-                    <img [src]="imagen" class="d-block w-100" alt="{{planta}}">
+            <div class="carousel-inner">
+                <div *ngFor="let imagen of plantaMostrada.crecimiento; let i = index" class="carousel-item"
+                    [class.active]="i === 0">
+                    <img [src]="imagen" class="d-block w-100" alt="{{plantaMostrada.planta}}">
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselCrecimientoIndicators"
                 data-bs-slide="prev">
                 <span class="carousel-control-prev-icon rounded-4 flecha-left" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselCrecimientoIndicators"
                 data-bs-slide="next">
-                <span class="carousel-control-next-icon rounded-4  flecha-right" aria-hidden="true"></span>
+                <span class="carousel-control-next-icon rounded-4 flecha-right" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
+
     </div>
 </div>
