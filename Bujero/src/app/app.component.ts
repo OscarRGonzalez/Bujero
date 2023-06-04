@@ -20,11 +20,22 @@ export class AppComponent {
   select_home: Boolean = true;
   select_fav: Boolean = false;
   select_busqueda: Boolean = false;
+  select_estacion: Boolean = false;
 
   toHome() {
     this.title_pagina = "Home";
     if(this.select_home == false){
       this.select_home = true;
+    }
+    this.select_fav = false;
+    this.select_cultivos = false;
+    this.select_busqueda = false;
+  }
+
+  toEstacion() {
+    this.title_pagina = "Estación";
+    if(this.select_estacion == false){
+      this.select_estacion = true;
     }
     this.select_fav = false;
     this.select_cultivos = false;
@@ -40,7 +51,6 @@ export class AppComponent {
     this.select_cultivos = false;
     this.select_home = false;
   }
-
 
   toFavs() {
     this.title_pagina = "Favoritos";

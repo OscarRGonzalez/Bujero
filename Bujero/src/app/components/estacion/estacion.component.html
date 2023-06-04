@@ -1,20 +1,15 @@
 <p>estacion works!</p>
 
-<div class="row">
-    <div class="col-6">
-        <img src="assets/img/Coleo.png" alt="Logo" class="img-fluid">
-        <p class="text-center">Coleo</p>
+<div class="packtodo row mx-auto g-5 vh-100 contenedor my-auto pb-5">
+    <div class="packtodo1 col-6 my-auto flex-column justify-content-center align-items-center " *ngFor="let planta of plantas">
+        <div class="botones-container">
+            <img src="assets/img/seedling-regular.png" *ngIf="planta.misCultivos" class="planta-sin-relleno" (click)="toggleMisCultivos(planta)">
+            <img src="assets/img/seedling-solid.png" *ngIf="!planta.misCultivos" class="planta-relleno" (click)="toggleMisCultivos(planta)">
+
+            <i *ngIf="planta.star" class="star-sin-relleno fa-regular fa-star fa-2x" style="color: #3E6723;" (click)="toggleStar(planta)"></i>
+            <i *ngIf="!planta.star" class="star-relleno fa fa-star fa-2x" style="color: #3E6723;" (click)="toggleStar(planta)"></i>
+        </div>
+        <img class="img-plant" src ={{planta.path}} alt="Imagen de la planta">
+        <p class="text-center">{{ planta.nombre }}</p>
     </div>
-
-    <div class="col-6">
-        <img src="assets/img/primulas.jpg" alt="Logo" class="img-fluid">
-        <p class="text-center">Coleo</p>
-    </div>
-
-    <div class="col-6">
-        <img src="assets/img/margaritas.png" alt="Logo" class="img-fluid">
-        <p class="text-center">Coleo</p>
-    </div>
-
-
 </div>

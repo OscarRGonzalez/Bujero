@@ -1,0 +1,51 @@
+.packtodo {
+    width: 100%;
+    max-width: 800px;
+}
+
+.packtodo1 {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.img-plant {
+    max-width: 160px;
+    max-height: 160px;
+    width: 160px;
+    height: 160px;
+}
+
+.planta-relleno {
+    position: absolute;
+    left: 0;
+    margin-left: 5px;
+    width: 39px;
+    height: 39px;
+}
+
+.planta-sin-relleno {
+    position: absolute;
+    left: 0;
+    margin-left: 5px;
+    width: 39px;
+    height: 39px;
+}
+
+.star-relleno {
+    position: absolute;
+    right: 0;
+    margin-right: 5px;
+    width: 39px;
+    height: 39px;
+}
+
+.star-sin-relleno {
+    position: absolute;
+    right: 0;
+    margin-right: 5px;
+    width: 39px;
+    height: 39px;
+}
+
