@@ -10,6 +10,7 @@ import {EstacionComponent} from "./components/estacion/estacion.component";
 import {FavoritosComponent} from "./components/favoritos/favoritos.component";
 import {InfoPlantaComponent} from "./components/info-planta/info-planta.component";
 import {MisCultivosComponent} from "./components/mis-cultivos/mis-cultivos.component";
+import {LogOutComponent} from "./components/log-out/log-out.component";
 
 
 const appRoutes = [
@@ -21,6 +22,7 @@ const appRoutes = [
     { path: 'estacion', component: EstacionComponent },
     { path: 'favoritos', component: FavoritosComponent },
     { path: 'mis-cultivos', component: MisCultivosComponent },
+    { path: 'log-out', component: LogOutComponent },
   ];
 
 

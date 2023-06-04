@@ -15,6 +15,7 @@ import { routing } from "./app-routing";
 import { CardMisCultivosComponent } from './components/card-mis-cultivos/card-mis-cultivos.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SharedServiceService } from './shared-service.service';
+import { LogOutComponent } from './components/log-out/log-out.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { SharedServiceService } from './shared-service.service';
     LoginComponent,
     MisCultivosComponent,
     RegistroComponent,
-    CardMisCultivosComponent
+    CardMisCultivosComponent,
+    LogOutComponent
   ],
   imports: [
     BrowserModule,
