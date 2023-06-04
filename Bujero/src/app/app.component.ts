@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
-interface Usuario {
-  contraseña: string;
-  favoritos: { [key: string]: any };
-}
+import { plantas as plantas_json } from '../assets/info_jsons/plantas';
+import { usuarios as usuarios_json } from '../assets/info_jsons/usuarios';
 
-interface Usuarios {
-  [key: string]: Usuario;
-}
 
 @Component({
   selector: 'app-root',
@@ -14,6 +9,8 @@ interface Usuarios {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  usuarios: any = usuarios_json;
+  plantas: any = plantas_json;
   title = 'Bujero';
   title_pagina: any = "Home";
   select_cultivos: Boolean = false;
@@ -21,6 +18,11 @@ export class AppComponent {
   select_fav: Boolean = false;
   select_busqueda: Boolean = false;
   select_estacion: Boolean = false;
+
+  constructor() {
+    this.usuarios = sessionStorage.getItem('usuarios');
+    this.plantas = sessionStorage.getItem('plantas');
+  }
 
   toHome() {
     this.title_pagina = "Home";

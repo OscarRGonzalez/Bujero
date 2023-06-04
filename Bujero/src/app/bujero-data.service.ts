@@ -6,8 +6,27 @@ import { usuarios as usuarios_json } from '../assets/info_jsons/usuarios';
   providedIn: 'root'
 })
 export class BujeroDataService {
-  usuarios: any[] = usuarios_json;
-  plantas: any[] = plantas_json;
+  usuarios: any[] = [];
+  plantas: any[] = [];
+
+  constructor() {
+    if(sessionStorage.getItem('plantas')){
+      sessionStorage.setItem('plantas', JSON.stringify(plantas_json));
+    }
+    if(sessionStorage.getItem('usuarios')){
+      sessionStorage.setItem('usuarios', JSON.stringify(usuarios_json));
+    }
+    console.log("Se han cargado los datos");
+    const usuariosSession = sessionStorage.getItem('usuarios');
+    const plantasSession = sessionStorage.getItem('plantas');
+
+    if (usuariosSession && plantasSession) {
+      this.usuarios = JSON.parse(usuariosSession);
+      this.plantas = JSON.parse(plantasSession);
+    }
+  }
+
+
 
   isPlantaInFavorites(usuarioCorreo: string, plantaNombre: string): boolean {
     const usuario = this.usuarios.find((user: { correo: string }) => user.correo === usuarioCorreo);
@@ -97,5 +116,22 @@ export class BujeroDataService {
         console.log('La planta no está en favoritos');
       }
     }
+  }
+  getPlantasFavoritas(usuarioCorreo: string): any[] {
+    const usuario = this.usuarios.find((user: { correo: string }) => user.correo === usuarioCorreo);
+    if (usuario) {
+      const favoritos = usuario.favoritos;
+      return favoritos;
+    }
+    return [];
+  }
+
+  getMisCultivos(usuarioCorreo: string): any[] {
+    const usuario = this.usuarios.find((user: { correo: string }) => user.correo === usuarioCorreo);
+    if (usuario) {
+      const misCultivos = usuario.mis_cultivos;
+      return misCultivos;
+    }
+    return [];
   }
 }

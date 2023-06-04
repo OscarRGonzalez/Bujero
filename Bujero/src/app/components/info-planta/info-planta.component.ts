@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { plantas as plantas_json } from '../../../assets/info_jsons/plantas';
-import { usuarios as usuarios_json } from '../../../assets/info_jsons/usuarios';
 import { BujeroDataService } from '../../bujero-data.service';
 
 
@@ -10,25 +8,34 @@ import { BujeroDataService } from '../../bujero-data.service';
   styleUrls: ['./info-planta.component.css']
 })
 export class InfoPlantaComponent {
-
-  constructor(private bujeroDataService: BujeroDataService) {
-    
-  }
-  ngOnInit(): void {
-    this.plantaMostrada = this.bujeroDataService.obtenerPlanta(this.plantaBuscada);
-    console.log(this.usuarios);
-    this.iamgenes_prueba = Object.values(this.plantaMostrada.imagenes);
-  }
-
   usuario = 'asas@gmail.com';
 
-  usuarios: any = usuarios_json;
-  plantas: any = plantas_json;
+  usuarios: any[] = [];
+  plantas: any[] = [];
   plantaBuscada = 'Coleo';
   plantaMostrada: any = [];
   iamgenes_prueba: any = [];
   favorito = false;
   misCultivos = false;
+
+  constructor(private bujeroDataService: BujeroDataService) {
+    const usuariosSession = sessionStorage.getItem('usuarios');
+    const plantasSession = sessionStorage.getItem('plantas');
+
+    if (usuariosSession && plantasSession) {
+      this.usuarios = JSON.parse(usuariosSession);
+      this.plantas = JSON.parse(plantasSession);
+    }
+  }
+  ngOnInit(): void {
+    console.log(this.usuarios);
+    console.log(this.plantas)
+    if (history.state && history.state.planta) {
+      this.plantaMostrada = history.state.planta;
+    }
+    
+    this.iamgenes_prueba = Object.values(this.plantaMostrada.imagenes);
+  }
 
   seedClicked() {
     console.log(this.bujeroDataService.usuarios);
