@@ -8,6 +8,7 @@ import { usuarios as usuarios_json } from '../assets/info_jsons/usuarios';
 export class BujeroDataService {
   usuarios: any[] = [];
   plantas: any[] = [];
+  plantaCultivo: any[] = [];
 
   constructor() {
     if(sessionStorage.getItem('plantas')){
@@ -73,7 +74,13 @@ export class BujeroDataService {
     if (planta && usuario) {
       const misCultivos = usuario.mis_cultivos;
       if (!misCultivos.find((planta: { nombre: string }) => planta.nombre === plantaNombre)) {
-        misCultivos.push(planta);
+        const nuevaPlanta = { ...planta };
+        nuevaPlanta.regada = {
+        maniana: false,
+        tarde: false
+      };
+      nuevaPlanta.nota = '';
+      misCultivos.push(nuevaPlanta);
         console.log(this.usuarios);
         this.guardarDatos();
       } else {
@@ -159,6 +166,50 @@ export class BujeroDataService {
       return user;
     }
     return null;
+  }
+  editPlantaNota(usuarioCorreo: string, plantaNombre: string, nota: string): void {
+    const usuario = this.obtenerUsuario(usuarioCorreo);
+    if (usuario) {
+      const misCultivos = usuario.mis_cultivos;
+      const planta = misCultivos.find((planta: { nombre: string }) => planta.nombre === plantaNombre);
+      if (planta) {
+        planta.nota = nota;
+        console.log(this.usuarios);
+        this.guardarDatos();
+      } else {
+        console.log('La planta no está en mis cultivos');
+      }
+    }
+  }
+  
+  editCheckTarde(usuarioCorreo: string, plantaNombre: string, check: boolean): void {
+    const usuario = this.obtenerUsuario(usuarioCorreo);
+    if (usuario) {
+      const misCultivos = usuario.mis_cultivos;
+      const planta = misCultivos.find((planta: { nombre: string }) => planta.nombre === plantaNombre);
+      if (planta) {
+        planta.regada.tarde = check;
+        console.log(this.usuarios);
+        this.guardarDatos();
+      } else {
+        console.log('La planta no está en mis cultivos');
+      }
+    }
+  }
+  
+  editCheckManiana(usuarioCorreo: string, plantaNombre: string, check: boolean): void {
+    const usuario = this.obtenerUsuario(usuarioCorreo);
+    if (usuario) {
+      const misCultivos = usuario.mis_cultivos;
+      const planta = misCultivos.find((planta: { nombre: string }) => planta.nombre === plantaNombre);
+      if (planta) {
+        planta.regada.maniana = check;
+        console.log(this.usuarios);
+        this.guardarDatos();
+      } else {
+        console.log('La planta no está en mis cultivos');
+      }
+    }
   }
   
 }

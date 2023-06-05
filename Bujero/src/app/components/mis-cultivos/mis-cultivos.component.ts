@@ -17,6 +17,7 @@ export class MisCultivosComponent {
   favorito = false;
   misCultivos = false;
   plantaBuscada = "";
+  tarde = false;
 
   constructor(private bujeroDataService: BujeroDataService, private router: Router) {
     const usuariosSession = sessionStorage.getItem('usuarios');
@@ -38,7 +39,7 @@ export class MisCultivosComponent {
       alert('Inicio de sesión requerido');
       this.router.navigate(['/login']);
     }
-    this.plantasCultivadas = this.bujeroDataService.getPlantasFavoritas(this.usuario);
+    this.plantasCultivadas = this.bujeroDataService.getMisCultivos(this.usuario);
 
   }
   
@@ -107,5 +108,18 @@ export class MisCultivosComponent {
   mostrarPlanta(planta: any){
     console.log(planta);
     this.router.navigate(['/planta'], { state: { planta } });
+  }
+
+  notaKey( planta: any, event: any ){
+    this.bujeroDataService.editPlantaNota(this.usuario, planta.nombre, event.target.value);
+  }
+
+  tardeClick(planta: any, event: any ){
+    this.bujeroDataService.editCheckTarde(this.usuario, planta.nombre, event.target.checked);
+
+  }
+  manianaClick( planta: any, event: any ){
+    this.bujeroDataService.editCheckManiana(this.usuario, planta.nombre, event.target.checked);
+  
   }
 }
