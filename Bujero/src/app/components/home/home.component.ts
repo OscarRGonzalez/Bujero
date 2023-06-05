@@ -12,27 +12,8 @@ export class HomeComponent {
     this.shareService.setParam("Home")
   }
 
-  changePrimavera() {
-    this.shareService.setParam("Primavera")
-  }
-
-  changeVerano() {
-    this.shareService.setParam("Verano")
-  }
-
-  changeOtonio() {
-    this.shareService.setParam("Otoño")
-  }
-
-  changeInvierno() {
-    this.shareService.setParam("Invierno")
-  }
-
-  changeTodasEstaciones() {
-    this.shareService.setParam("General")
-  }
-
   estacion(estacion: string){
     this.router.navigate(['/estacion'], {state:{estacion: estacion}});
+    this.shareService.setParam(estacion)
   }
 }

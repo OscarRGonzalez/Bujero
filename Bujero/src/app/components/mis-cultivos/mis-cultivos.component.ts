@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BujeroDataService } from '../../bujero-data.service';
 import { Router } from '@angular/router';
+import { SharedServiceService } from '../../shared-service.service';
 
 @Component({
   selector: 'app-mis-cultivos',
@@ -8,9 +9,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./mis-cultivos.component.css']
 })
 export class MisCultivosComponent {
-  
+
   usuario = 'asas@gmail.com';
-  
+
   usuarios: any[] = [];
   plantas: any[] = [];
   plantasCultivadas: any[] = [];
@@ -19,7 +20,7 @@ export class MisCultivosComponent {
   plantaBuscada = "";
   tarde = false;
 
-  constructor(private bujeroDataService: BujeroDataService, private router: Router) {
+  constructor(private bujeroDataService: BujeroDataService, private router: Router, private sharedService: SharedServiceService) {
     const usuariosSession = sessionStorage.getItem('usuarios');
     const plantasSession = sessionStorage.getItem('plantas');
 
@@ -28,7 +29,7 @@ export class MisCultivosComponent {
       this.plantas = JSON.parse(plantasSession);
     }
   }
-  
+
   ngOnInit(): void {
     console.log(this.usuarios);
     console.log(this.plantas);
@@ -38,11 +39,12 @@ export class MisCultivosComponent {
     if (!this.usuario) {
       alert('Inicio de sesión requerido');
       this.router.navigate(['/login']);
+      this.sharedService.setParam("login");
     }
     this.plantasCultivadas = this.bujeroDataService.getMisCultivos(this.usuario);
 
   }
-  
+
   seedClicked(planta: any) {
     this.plantaBuscada = planta.nombre;
     console.log(this.bujeroDataService.usuarios);

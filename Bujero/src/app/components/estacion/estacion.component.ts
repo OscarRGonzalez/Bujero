@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { BujeroDataService } from '../../bujero-data.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { SharedServiceService } from '../../shared-service.service';
 
 @Component({
   selector: 'app-estacion',
@@ -10,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EstacionComponent {
   usuario = '';
-  
+
   usuarios: any[] = [];
   plantas: any[] = [];
   plantasEstaciones: any[] = [];
@@ -19,7 +20,7 @@ export class EstacionComponent {
   plantaBuscada = "";
   estacion = "";
 
-  constructor(private bujeroDataService: BujeroDataService, private router: Router, private route: ActivatedRoute) {
+  constructor(private bujeroDataService: BujeroDataService, private router: Router, private route: ActivatedRoute, private sharedService: SharedServiceService) {
     const usuariosSession = sessionStorage.getItem('usuarios');
     const plantasSession = sessionStorage.getItem('plantas');
 
@@ -28,7 +29,7 @@ export class EstacionComponent {
       this.plantas = JSON.parse(plantasSession);
     }
   }
-  
+
   ngOnInit(): void {
     console.log(this.usuarios);
     console.log(this.plantasEstaciones);
@@ -48,21 +49,23 @@ export class EstacionComponent {
     } else {
     this.plantasEstaciones = this.bujeroDataService.getPlantasEstaciones(this.estacion);
     }
-    
+
 
   }
-  
+
   seedClicked(planta: any) {
     if (!this.bujeroDataService.getUserFromSessionStorage()) {
       alert('Inicio de sesión requerido');
       this.router.navigate(['/login']);
+      this.sharedService.setParam("Login")
+
     }
     this.plantaBuscada = planta.nombre;
     console.log(this.bujeroDataService.usuarios);
     console.log(this.bujeroDataService.plantas);
     const plantaColeo = this.bujeroDataService.obtenerPlanta(this.plantaBuscada);
     console.log(plantaColeo);
-    console.log(this.usuario);  
+    console.log(this.usuario);
 
     const usuarioIndex = this.bujeroDataService.usuarios.findIndex(
       (user: { correo: string }) => user.correo === this.usuario
@@ -89,6 +92,7 @@ export class EstacionComponent {
     if (!this.bujeroDataService.getUserFromSessionStorage()) {
       alert('Inicio de sesión requerido');
       this.router.navigate(['/login']);
+      this.sharedService.setParam("Login")
     }
     this.plantaBuscada = planta.nombre;
     console.log(this.bujeroDataService.usuarios);

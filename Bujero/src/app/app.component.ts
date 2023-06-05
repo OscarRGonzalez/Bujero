@@ -56,8 +56,9 @@ export class AppComponent {
   }
 
   toFavs() {
+    let usuario = this.bujeroDataService.getUserFromSessionStorage();
     this.title_pagina = "Favoritos";
-    if(this.select_fav == false){
+    if(this.select_fav == false && usuario){
       this.select_fav = true;
     }
     this.select_busqueda = false;
@@ -66,7 +67,8 @@ export class AppComponent {
   }
 
   toMisCultivos() {
-    if(this.select_cultivos == false){
+    let usuario = this.bujeroDataService.getUserFromSessionStorage();
+    if(this.select_cultivos == false && usuario){
       this.select_cultivos = true;
     }
     this.select_busqueda = false;
@@ -75,14 +77,21 @@ export class AppComponent {
 
     this.title_pagina = "Mis cultivos";
   }
-  
+
   iniciarSesion(){
     if (this.bujeroDataService.getUserFromSessionStorage()) {
       this.router.navigate(['/log-out']);
+      this.title_pagina = "Mi Perfil";
+
     } else {
       this.router.navigate(['/login']);
+      this.title_pagina = "Login";
     }
+    this.select_cultivos = false;
+    this.select_busqueda = false;
+    this.select_fav = false;
+    this.select_home = false;
   }
-    
+
 
 }

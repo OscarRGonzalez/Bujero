@@ -2,17 +2,19 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { BujeroDataService } from '../../bujero-data.service';
 
+import { SharedServiceService } from '../../shared-service.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(public router: Router, private bujeroDataService: BujeroDataService,) { }
+  constructor(public router: Router, private bujeroDataService: BujeroDataService, private shareService: SharedServiceService,) { }
 
   email = "";
   password = "";
-  
+
   iniciarSesion(){
     console.log(this.email);
     console.log(this.password);
@@ -33,6 +35,7 @@ export class LoginComponent {
 
   irRegistrar() {
     this.router.navigate(['/registro']);
+    this.shareService.setParam("Registro")
   }
 
 }

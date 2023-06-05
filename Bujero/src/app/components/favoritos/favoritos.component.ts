@@ -2,16 +2,18 @@ import { Component } from '@angular/core';
 import { BujeroDataService } from '../../bujero-data.service';
 import { Router } from '@angular/router';
 
+import { SharedServiceService } from '../../shared-service.service';
+
 @Component({
   selector: 'app-favoritos',
   templateUrl: './favoritos.component.html',
   styleUrls: ['./favoritos.component.css']
 })
 export class FavoritosComponent {
-  
-  
+
+
   usuario = 'asas@gmail.com';
-  
+
   usuarios: any[] = [];
   plantas: any[] = [];
   plantasFavoritas: any[] = [];
@@ -19,17 +21,17 @@ export class FavoritosComponent {
   misCultivos = false;
   plantaBuscada = "";
 
-  constructor(private bujeroDataService: BujeroDataService, private router: Router) {
+  constructor(private bujeroDataService: BujeroDataService, private router: Router, private shareService: SharedServiceService,) {
     const usuariosSession = sessionStorage.getItem('usuarios');
     const plantasSession = sessionStorage.getItem('plantas');
 
     if (usuariosSession && plantasSession) {
       this.usuarios = JSON.parse(usuariosSession);
       this.plantas = JSON.parse(plantasSession);
-      
+
     }
   }
-  
+
   ngOnInit(): void {
     console.log(this.usuarios);
     console.log(this.plantasFavoritas);
@@ -38,10 +40,11 @@ export class FavoritosComponent {
     if (!this.usuario) {
       alert('Inicio de sesión requerido');
       this.router.navigate(['/login']);
+      this.shareService.setParam("Login");
     }
     this.plantasFavoritas = this.bujeroDataService.getPlantasFavoritas(this.usuario);
   }
-  
+
   seedClicked(planta: any) {
     this.plantaBuscada = planta.nombre;
     const plantaColeo = this.bujeroDataService.obtenerPlanta(this.plantaBuscada);

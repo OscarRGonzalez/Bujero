@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { BujeroDataService } from '../../bujero-data.service';
 
+import { SharedServiceService } from '../../shared-service.service';
+
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
@@ -13,7 +15,7 @@ export class RegistroComponent {
   password = "";
   repeatPassword = "";
 
-  constructor(public router: Router, private bujeroDataService: BujeroDataService,) { }
+  constructor(public router: Router, private bujeroDataService: BujeroDataService, private shareService: SharedServiceService,) { }
 
   registrarse() {
     if (this.password == this.repeatPassword) {
@@ -32,9 +34,10 @@ export class RegistroComponent {
   }
 
 
-  
+
   irLogin() {
     this.router.navigate(['/login']);
+    this.shareService.setParam("Login")
   }
 
 }
