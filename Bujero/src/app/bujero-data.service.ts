@@ -80,6 +80,8 @@ export class BujeroDataService {
         tarde: false
       };
       nuevaPlanta.nota = '';
+      // fecha con solo dia, mes y año
+      nuevaPlanta.fecha = new Date().toLocaleDateString();
       misCultivos.push(nuevaPlanta);
         console.log(this.usuarios);
         this.guardarDatos();
